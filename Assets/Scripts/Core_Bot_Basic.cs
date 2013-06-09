@@ -6,11 +6,9 @@ using System.Collections.Generic;
 //  These are used by the bot's processor to control it's behavior.
 public class Core_Bot_Basic : MonoBehaviour {
 	public string Bot_ID = "B001";
-	public Processor_Bot_Basic processor;
-	public Function main_function;
+	public Processor_Bot_Basic processor;		// this bot's processor.
+	public Function main_function;				// allows setting the processor's main function in Unity UI.
 	    
-	private RaycastHit surface_ray;                //surface sampling ray - will have surface point and normal information
-    private LayerMask ground = 1 << 8;
 	private Transform T_Planet;
 	
     //private Vector3 heading = transform.forward();
@@ -22,25 +20,20 @@ public class Core_Bot_Basic : MonoBehaviour {
     private float breakforce_max = 100.0f;      //the max force applied by breaks (should never be negative)
     private float rotation = 0.0f;       		//The angle of rotation to apply
 	private float rotation_time = 0.0f;			//The amount of time left for rotation
-	private Vector3 rotation_goal = new Vector3(0.0f, 0.0f, 0.0f); //The point to rotate towards				
+	private Vector3 rotation_goal = new Vector3(0.0f, 0.0f, 0.0f); //The point to rotate towards
+	private Vector3 halfHeight = new Vector3(0,5F,0);	//planet surface point + this = my center.
 	
 	void Start(){
-		processor = new Processor_Bot_Basic(this);	
+		main_function = PrebuiltFunctions.justDrive;
+		processor = new Processor_Bot_Basic(this, main_function);	
 	}
 	
 	void Update(){
 		processor.Update();	
-		bool needValidation = false;
 		
-		if(rotation_time > 0){
-			_DoTransform();
-			needValidation = true;
-		}
-		
-		if(needValidation){
-			_ValidateVelocity();
-			_AlignToSurface();
-		}
+		_DoTransform();
+		_ValidateVelocity();
+		_AlignToSurface();
 	}
     //-----------------------------------------------------------------------------------------------------
     //applies forward engine force to the velocity
@@ -78,18 +71,21 @@ public class Core_Bot_Basic : MonoBehaviour {
     //Transforms bot based on velocity
     private void _DoTransform()
     {
-		rotation = Vector3.Angle(Vector3.Cross(T_Planet.position, rotation_goal), -transform.right);
-		transform.Rotate(Vector3.up * rotation * Time.deltaTime / rotation_time);
-		rotation_time -= Time.deltaTime;
+		if(rotation_time > 0)
+		{
+			rotation = Vector3.Angle(GPS.getHeading(transform.position, rotation_goal), transform.forward);
+			transform.Rotate(Vector3.up * rotation * Time.deltaTime / rotation_time);
+			rotation_time -= Time.deltaTime;
+		}
 		transform.Translate(velocity * Time.deltaTime);
     }
     //-----------------------------------------------------------------------------------------------------
     //Must run after any transformation to keep the bot aligned to the ground.
     private void _AlignToSurface()
     {
-        Physics.Raycast(transform.position, -transform.position, out surface_ray, transform.position.magnitude, ground);
-        transform.position = surface_ray.point;
-        transform.up = surface_ray.normal;
+		RaycastHit hit = GPS.getRaycastHit(transform.position);
+        transform.position = hit.point;// + transform.up * Vector3.Dot(transform.up, halfHeight);	//add half height
+        transform.up = hit.normal;
     }
     //-----------------------------------------------------------------------------------------------------
     //Do whatever it should when a minor mechanical failure occurs

@@ -33,7 +33,6 @@ public class Factory : MonoBehaviour {
 				newBot.transform.position = pos;
 				newBot.transform.rotation = Quaternion.Euler(transform.position);
 			}
-			
 			timeToProduce = manufactureInitialCooldown + bots.Count;
 		}
 	}

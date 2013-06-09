@@ -3,19 +3,19 @@ using System.Collections.Generic;
 
 //	A game object's processor is responsible for translating basic game actions into the units core commands (it's hardware interface).
 //  Applied to a game entity, it sends commands to the entities core.
-//  Has a rootFunction that makes it do things. An instruction from the rootFunction gets called every Step().
+//  Has a main_function that makes it do things. An instruction from the main_function gets called every Step().
 public class Processor_Bot_Basic{
-    private Function rootFunction;
-    private float timeToNextStep;
-	private Core_Bot_Basic bot;
-
-    public Transform t_planet;
-    public Stack<Frame> callStack;
+    private Function main_function;	// when the callstack is empty, the processor starts running this.
+    private float timeToNextStep;	// how much time before Step() is run again.
+	private Core_Bot_Basic bot;		// reference to the physical bot this is the processor of.
+	
+	public BotVariable[] channels = new BotVariable[3]; // channels hold bot's variables and may be set by incoming signals.
+    public Stack<Frame> callStack;		// the stack of functions this processor is running.
 
     // Use this for initialization
     public Processor_Bot_Basic(Core_Bot_Basic owner, Function root){
         callStack = new Stack<Frame>();
-        rootFunction = root;
+        main_function = root;
         timeToNextStep = 0;
 		bot = owner;
     }
@@ -29,7 +29,7 @@ public class Processor_Bot_Basic{
     }
 
     //-----------------------------------------------------------------------------------------------------
-    // run the next instruction in my rootFunction (which maybe a nested one).
+    // run the next instruction in my main_function (which maybe a nested one).
     //		returns the time until Step() should be called again.
     float Step(){
 
@@ -37,12 +37,12 @@ public class Processor_Bot_Basic{
             // last step we finished our root function.
             // start it up again!
             //	(later there could be more maintainance here)
-            callStack.Push(new Frame(rootFunction));
+            callStack.Push(new Frame(main_function));
         }
 
         // get the current frame:
         Frame curFrame = callStack.Peek();
-
+				
         // get the current instruction in this frame's function:
         Instruction curInstruction = curFrame.function.subInstructions[curFrame.instructionPointer];
 

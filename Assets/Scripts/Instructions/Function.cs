@@ -5,8 +5,12 @@ using System.Collections.Generic;
 //	Its run adds itself to the calling bot's callStack.
 
 public class Function : Instruction {
-	public IList<Instruction> subInstructions;
+	public List<Instruction> subInstructions;
 		
+	public Function(){
+		subInstructions = new List<Instruction>();	
+	}
+	
 	// When a function is run, it pushes itself onto the
 	// bot's callstack.
 	public override float run(Core_Bot_Basic bot){

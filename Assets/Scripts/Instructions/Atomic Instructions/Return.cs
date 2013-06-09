@@ -6,9 +6,9 @@
 public class Return : Instruction {
 
 	// Runs return on the bot.
-	public override float run(Bot bot){
+	public override float run(Core_Bot_Basic bot){
 		// remove the current frame from the bot's callstack
-		bot.callStack.Pop();
+		bot.processor.callStack.Pop();
 		return 0;
 	}
 }
