@@ -4,30 +4,26 @@ using System.Collections.Generic;
 //	A game object's processor is responsible for translating basic game actions into the units core commands (it's hardware interface).
 //  Applied to a game entity, it sends commands to the entities core.
 //  Has a rootFunction that makes it do things. An instruction from the rootFunction gets called every Step().
-public class Processor_Bot_Basic
-{
+public class Processor_Bot_Basic{
     private Function rootFunction;
     private float timeToNextStep;
+	private Core_Bot_Basic bot;
 
-
-    public Function root;
     public Transform t_planet;
     public Stack<Frame> callStack;
 
     // Use this for initialization
-    void Start()
-    {
+    public Processor_Bot_Basic(Core_Bot_Basic owner, Function root){
         callStack = new Stack<Frame>();
         rootFunction = root;
         timeToNextStep = 0;
+		bot = owner;
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    public void Update(){
         timeToNextStep -= Time.deltaTime;
-        if (timeToNextStep <= 0)
-        {
+        if (timeToNextStep <= 0){
             timeToNextStep = Step();
         }
     }
@@ -35,11 +31,9 @@ public class Processor_Bot_Basic
     //-----------------------------------------------------------------------------------------------------
     // run the next instruction in my rootFunction (which maybe a nested one).
     //		returns the time until Step() should be called again.
-    float Step()
-    {
+    float Step(){
 
-        if (callStack.Count == 0)
-        {
+        if (callStack.Count == 0){
             // last step we finished our root function.
             // start it up again!
             //	(later there could be more maintainance here)
@@ -57,6 +51,6 @@ public class Processor_Bot_Basic
         curFrame.instructionPointer++;
 
         // run this instruction!:
-        return curInstruction.run(this);
+        return curInstruction.run(bot);
     }
 }

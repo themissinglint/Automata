@@ -9,8 +9,8 @@ public class Function : Instruction {
 		
 	// When a function is run, it pushes itself onto the
 	// bot's callstack.
-	public override float run(Processor_Bot_Basic bot){
-		bot.callStack.Push(new Frame(this));
+	public override float run(Core_Bot_Basic bot){
+		bot.processor.callStack.Push(new Frame(this));
 		return 0;
 	}
 		

@@ -48,9 +48,13 @@
      <Compile Include="Assets\Scripts\Core_Bot_Basic.cs" />
      <Compile Include="Assets\Scripts\Factory.cs" />
      <Compile Include="Assets\Scripts\Frame.cs" />
-     <Compile Include="Assets\Scripts\Function.cs" />
      <Compile Include="Assets\Scripts\GPS.cs" />
-     <Compile Include="Assets\Scripts\Instruction.cs" />
+     <Compile Include="Assets\Scripts\Instructions\Forward.cs" />
+     <Compile Include="Assets\Scripts\Instructions\Function.cs" />
+     <Compile Include="Assets\Scripts\Instructions\Instruction.cs" />
+     <Compile Include="Assets\Scripts\Instructions\Return.cs" />
+     <Compile Include="Assets\Scripts\Instructions\TurnLeft90.cs" />
+     <Compile Include="Assets\Scripts\Instructions\TurnRight90.cs" />
      <Compile Include="Assets\Scripts\Planet.cs" />
      <Compile Include="Assets\Scripts\Processor_Bot_Basic.cs" />
      <Compile Include="Assets\Scripts\SunScript.cs" />

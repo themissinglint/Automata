@@ -1,0 +1,19 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Instructions\Instruction.cs">
+    <Files>
+      <File FileName="Assets\Scripts\Factory.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Core_Bot_Basic.cs" Line="10" Column="32" />
+      <File FileName="Assets\Scripts\Processor_Bot_Basic.cs" Line="11" Column="2" />
+      <File FileName="Assets\Scripts\SunScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Camera_Planet.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GPS.cs" Line="26" Column="2" />
+      <File FileName="Assets\Scripts\Instructions\Function.cs" Line="15" Column="3" />
+      <File FileName="Assets\Scripts\Instructions\Instruction.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
