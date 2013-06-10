@@ -64,6 +64,7 @@
      <Compile Include="Assets\Scripts\Processor_Bot_Basic.cs" />
      <Compile Include="Assets\Scripts\SceneInitializer.cs" />
      <Compile Include="Assets\Scripts\SunScript.cs" />
+     <None Include="Assets\README.txt" />
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
  <Reference Include="Assembly-UnityScript-firstpass">
  <HintPath>Library\ScriptAssemblies\Assembly-UnityScript-firstpass.dll</HintPath>
