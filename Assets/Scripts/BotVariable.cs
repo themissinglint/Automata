@@ -1,22 +1,31 @@
 using UnityEngine;
+
+enum DataType {Location, Float, String, Channel};
+
 public class BotVariable{
-	public string type;
+	public DataType type;
 	public Vector3 location;
 	public float floatValue;
+	public int channel;
 	public string name;
 	
 	public void Set(Vector3 loc){
-		type = "location";
+		type = DataType.Location;
 		location = loc;
 	}
 			
 	public void Set(string newName){
-		type = "string";
+		type = DataType.String;
 		name = newName;
 	}
 				
 	public void Set(float value){
-		type = "float";
+		type = DataType.Float;
 		floatValue = value;
 	}
+	
+	public void Set(int value){
+		type = DataType.Channel;
+		channel = value;
+	}	
 }

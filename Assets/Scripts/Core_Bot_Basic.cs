@@ -24,7 +24,7 @@ public class Core_Bot_Basic : MonoBehaviour {
 	private Vector3 halfHeight = new Vector3(0,5F,0);	//planet surface point + this = my center.
 	
 	void Start(){
-		main_function = PrebuiltFunctions.justDrive;
+		main_function = PrebuiltFunctions.driveToA;
 		processor = new Processor_Bot_Basic(this, main_function);	
 	}
 	

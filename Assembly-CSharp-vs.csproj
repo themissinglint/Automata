@@ -46,25 +46,27 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\BotVariable.cs" />
      <Compile Include="Assets\Scripts\Camera_Planet.cs" />
+     <Compile Include="Assets\Scripts\Control_Tower.cs" />
      <Compile Include="Assets\Scripts\Core_Bot_Basic.cs" />
      <Compile Include="Assets\Scripts\Factory.cs" />
      <Compile Include="Assets\Scripts\Frame.cs" />
      <Compile Include="Assets\Scripts\GPS.cs" />
      <Compile Include="Assets\Scripts\Instructions\Atomic Instructions\ApplyBreaks.cs" />
      <Compile Include="Assets\Scripts\Instructions\Atomic Instructions\Forward50.cs" />
+     <Compile Include="Assets\Scripts\Instructions\Atomic Instructions\If.cs" />
      <Compile Include="Assets\Scripts\Instructions\Atomic Instructions\Return.cs" />
      <Compile Include="Assets\Scripts\Instructions\Atomic Instructions\TurnTowardsA.cs" />
+     <Compile Include="Assets\Scripts\Instructions\Atomic Instructions\While.cs" />
      <Compile Include="Assets\Scripts\Instructions\Function.cs" />
-     <Compile Include="Assets\Scripts\Instructions\If.cs" />
      <Compile Include="Assets\Scripts\Instructions\Instruction.cs" />
      <Compile Include="Assets\Scripts\Instructions\Operation.cs" />
      <Compile Include="Assets\Scripts\Instructions\PrebuiltFunctions.cs" />
-     <Compile Include="Assets\Scripts\Instructions\While.cs" />
      <Compile Include="Assets\Scripts\Planet.cs" />
      <Compile Include="Assets\Scripts\Processor_Bot_Basic.cs" />
      <Compile Include="Assets\Scripts\SceneInitializer.cs" />
      <Compile Include="Assets\Scripts\SunScript.cs" />
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
+     <None Include="Assets\README.txt" />
  <Reference Include="Assembly-UnityScript-firstpass">
  <HintPath>Library\ScriptAssemblies\Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>

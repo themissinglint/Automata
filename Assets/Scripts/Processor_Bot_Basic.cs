@@ -49,8 +49,99 @@ public class Processor_Bot_Basic{
         // increment the frame's instructionPointer to the next code block in its function
         //	(we increment the counter BEFORE running the instruction)
         curFrame.instructionPointer++;
-
+		
+		BotVariable param = curInstruction.param;
+		float fParam;
+		Vector3 v3Param;
         // run this instruction!:
-        return curInstruction.run(bot);
+		switch (curInstruction.type){
+			case InstructionType.Return:
+				callStack.Pop ();
+				return 1F;
+			break;
+			case InstructionType.If:
+				//TODO, requires conditionals.
+				return 0F;
+			break;
+			case InstructionType.Throttle:
+				fParam = FloatFromBotVariable(curInstruction.param);
+				if(fParam != Mathf.NegativeInfinity){
+					bot.SetThrottle(fParam);
+					return 1F;
+				}
+			break;
+			case InstructionType.Break:
+				fParam = FloatFromBotVariable(curInstruction.param);
+				if(fParam != Mathf.NegativeInfinity){
+					bot.SetBreak(fParam);
+					return 1F;
+				}
+			break;
+			case InstructionType.TurnTo:
+				v3Param = LocationFromBotVariable(curInstruction.param);
+				if(v3Param != null){
+					bot.TurnToward(v3Param, 2);
+					return 1F;
+				}
+				
+			break;
+			case InstructionType.While:
+				//////TODO, requires conditionals.
+				/*
+				// if the condition fails, abort this function:
+				if( ! operation.operation(left, right))
+				{
+					bot.processor.callStack.Pop ();	
+					return 1f;
+				}
+				// if the condition is true, make a new frame with this function, 
+				// add it to the top of the callStack with the instruction pointer 
+				// pointing AFTER the while.  Then move this frame's instruction pointer
+				// to point at this while again.  Result should be that it runs a dummy 
+				// copy of this function, then returns to check this while again.
+				else {
+					Frame thisFrame = bot.processor.callStack.Peek();
+					bot.processor.callStack.Push(new Frame(thisFrame.function));
+					bot.processor.callStack.Peek().instructionPointer++;
+					thisFrame.instructionPointer--;
+					return .5f;
+				}
+				//*/				
+			break;
+			default:
+				Debug.LogError ("Unexpected instruction type!");
+			break;
+		}
     }
+	
+	// If a param is a location, return that.  If the param is a channel
+	// with a location in it, return that location.  Otherwise fail.
+	private Vector3 LocationFromBotVariable(BotVariable data){
+		if( data.type == DataType.Location )
+			return data.location;
+		if( data.type == DataType.Channel )
+			if (channels[data.channel].type == DataType.Location)
+				return channels[data.channel].location;
+			else{
+				Debug.Log("bot referenced a channel of the wrong type!");
+				// should stall or explode or something.
+			}
+		return null;
+	}
+	
+	
+	// If a param is a float, return that.  If the param is a channel
+	// with a float in it, return that float.  Otherwise fail.
+	private float FloatFromBotVariable(BotVariable data){
+		if( data.type == DataType.Float )
+			return data.floatValue;
+		if( data.type == DataType.Channel )
+			if (channels[data.channel].type == DataType.Float)
+				return channels[data.channel].floatValue;
+			else{
+				Debug.Log("bot referenced a channel of the wrong type!");
+				// should stall or explode or something.
+			}
+		return Mathf.NegativeInfinity;
+	}
 }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class Factory : MonoBehaviour {
 	private float timeToProduce;
 	public int maxRobots = 10;
-	public List<Core_Bot_Basic> bots = new List<Core_Bot_Basic>();
+	public static List<Core_Bot_Basic> bots = new List<Core_Bot_Basic>();
 	public GameObject instance;
 	public float manufactureInitialCooldown = 1;
 	

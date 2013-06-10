@@ -7,18 +7,30 @@ using System.Collections;
 //  Will have many other subclasses to encompass the range of actions we
 //	want to be possible.
 
+enum InstructionType {Return, If, While, Throttle, Break, TurnTo, };
+
 public abstract class Instruction {
+	
+	public InstructionType type;
 	public string name = "instruction";
 	//public Icon icon;
 	//public Sound runSound;
-	//etc.
+	//etc.	
+	
+	public BotVariable param = null;
+	
+	public Instruction(InstructionType type, BotVariable param){
+		this.type = type;
+		this.param = param;
+	}
 	
 	private string[] requiresChannelTypes = {null,null,null};
 	
 	// Runs this instruction on the bot.
-	// should be overridden by subclasses. 
 	//	returns the amount of time before the bot should run Step() again.
-	public abstract float run(Core_Bot_Basic bot);
+	public float run(Core_Bot_Basic bot){
+		return myRun(this, bot);	
+	}
 	
 	// checks if the bot's channel var types match the requirements of this instruction.
 	// subClasses that have channel requirements should check this first, and return or 
@@ -32,10 +44,13 @@ public abstract class Instruction {
 		return true;
 	}
 	
-	/*
-	public virtual int recursiveLength(){
-		return 1;	
-	}
-	//*/
+	public static Instruction 
+					FORWARD_50 = Instruction(run_forward, 50),
+					FORWARD_30 = Instruction(run_forward, 30),
+					FORWARD_10 = Instruction(run_forward, 10),
+					TURN_TOWARDS_A = Instruction(run_turnTowards, 0),
+					TURN_TOWARDS_B = Instruction(run_turnTowards, 1),
+					TURN_TOWARDS_C = Instruction(run_turnTowards, 2),
+					MINE = Instruction(run_mine);
 	
 }
