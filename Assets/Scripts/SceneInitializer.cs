@@ -7,7 +7,7 @@ public class SceneInitializer : MonoBehaviour{
 
 	// Use this for initialization
 	void Start () {
-		PrebuiltFunctions.init();
+		Function.init();
 		
 	}
 }

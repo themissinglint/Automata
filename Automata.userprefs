@@ -1,22 +1,17 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Processor_Bot_Basic.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Core_Bot_Basic.cs">
     <Files>
-      <File FileName="Assets\Scripts\Instructions\PrebuiltFunctions.cs" Line="7" Column="63" />
-      <File FileName="Assets\Scripts\Factory.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Core_Bot_Basic.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Core_Bot_Basic.cs" Line="88" Column="9" />
       <File FileName="Assets\Scripts\GPS.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\BotVariable.cs" Line="26" Column="2" />
-      <File FileName="Assets\Scripts\Frame.cs" Line="13" Column="17" />
-      <File FileName="Assets\Scripts\SceneInitializer.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Control_Tower.cs" Line="22" Column="62" />
-      <File FileName="Assets\Scripts\Instructions\Atomic Instructions\TurnTowardsA.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Instructions\Instruction.cs" Line="23" Column="20" />
-      <File FileName="Assets\Scripts\Instructions\Function.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Processor_Bot_Basic.cs" Line="55" Column="19" />
-      <File FileName="Assets\Scripts\Instructions\Atomic Instructions\If.cs" Line="18" Column="3" />
-      <File FileName="Assets\Scripts\Instructions\Atomic Instructions\Forward50.cs" Line="9" Column="18" />
-      <File FileName="Assets\Scripts\Instructions\Atomic Instructions\While.cs" Line="29" Column="1" />
+      <File FileName="Assets\Scripts\BotVariable.cs" Line="13" Column="34" />
+      <File FileName="Assets\Scripts\Frame.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Control_Tower.cs" Line="13" Column="36" />
+      <File FileName="Assets\Scripts\Instructions\Function.cs" Line="44" Column="2" />
+      <File FileName="Assets\Scripts\Instructions\Instruction.cs" Line="50" Column="55" />
+      <File FileName="Assets\Scripts\Processor_Bot_Basic.cs" Line="20" Column="15" />
+      <File FileName="Assets\Scripts\SceneInitializer.cs" Line="14" Column="1" />
+      <File FileName="Assets\Scripts\Factory.cs" Line="5" Column="30" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -23,8 +23,7 @@ public class Control_Tower : MonoBehaviour {
 				Vector3 location = hit.point;
 				
 				//build the message:
-				BotVariable data = new BotVariable();
-				data.Set (location);
+				BotVariable data = new BotVariable(location);
 				
 				//send the message:
 				SendSignal(transform.position, signalStrength, nextClickSendsOnChannel, data);	

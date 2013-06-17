@@ -1,6 +1,6 @@
 using UnityEngine;
 
-enum DataType {Location, Float, String, Channel};
+public enum DataType {Uninitialized, Location, Float, String, Channel};
 
 public class BotVariable{
 	public DataType type;
@@ -9,11 +9,35 @@ public class BotVariable{
 	public int channel;
 	public string name;
 	
-	public void Set(Vector3 loc){
+	public BotVariable(){
+		type = DataType.Uninitialized;	
+	}
+	
+	// Constructors for each type:
+	public BotVariable(string newName){
+		type = DataType.String;
+		name = newName;
+	}
+				
+	public BotVariable(float value){
+		type = DataType.Float;
+		floatValue = value;
+	}
+	
+	public BotVariable(int value){
+		if( value < 0 || value > 2)
+			Debug.LogError("BotVariable with invalid channel ID: " + value);
+		type = DataType.Channel;
+		channel = value;
+	}	
+	
+	public BotVariable(Vector3 loc){
 		type = DataType.Location;
 		location = loc;
 	}
-			
+	
+	// Sets for each type:
+	
 	public void Set(string newName){
 		type = DataType.String;
 		name = newName;
@@ -25,6 +49,8 @@ public class BotVariable{
 	}
 	
 	public void Set(int value){
+		if( value < 0 || value > 2)
+			Debug.LogError("BotVariable with invalid channel ID:" + value);
 		type = DataType.Channel;
 		channel = value;
 	}	

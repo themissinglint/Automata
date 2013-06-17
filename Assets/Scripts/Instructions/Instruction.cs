@@ -7,9 +7,9 @@ using System.Collections;
 //  Will have many other subclasses to encompass the range of actions we
 //	want to be possible.
 
-enum InstructionType {Return, If, While, Throttle, Break, TurnTo, };
+public enum InstructionType {Return, If, While, Throttle, Break, TurnTo, Function};
 
-public abstract class Instruction {
+public class Instruction {
 	
 	public InstructionType type;
 	public string name = "instruction";
@@ -19,19 +19,14 @@ public abstract class Instruction {
 	
 	public BotVariable param = null;
 	
-	public Instruction(InstructionType type, BotVariable param){
+	public Instruction(InstructionType type, BotVariable param = null){
 		this.type = type;
 		this.param = param;
 	}
 	
+	/*
 	private string[] requiresChannelTypes = {null,null,null};
-	
-	// Runs this instruction on the bot.
-	//	returns the amount of time before the bot should run Step() again.
-	public float run(Core_Bot_Basic bot){
-		return myRun(this, bot);	
-	}
-	
+		
 	// checks if the bot's channel var types match the requirements of this instruction.
 	// subClasses that have channel requirements should check this first, and return or 
 	// explode or something if the requirements are not met.
@@ -43,14 +38,15 @@ public abstract class Instruction {
 		}
 		return true;
 	}
+	//*/
 	
 	public static Instruction 
-					FORWARD_50 = Instruction(run_forward, 50),
-					FORWARD_30 = Instruction(run_forward, 30),
-					FORWARD_10 = Instruction(run_forward, 10),
-					TURN_TOWARDS_A = Instruction(run_turnTowards, 0),
-					TURN_TOWARDS_B = Instruction(run_turnTowards, 1),
-					TURN_TOWARDS_C = Instruction(run_turnTowards, 2),
-					MINE = Instruction(run_mine);
+					FORWARD_50 = new Instruction(InstructionType.Throttle, new BotVariable(50F)),
+					FORWARD_30 = new Instruction(InstructionType.Throttle, new BotVariable(30F)),
+					FORWARD_10 = new Instruction(InstructionType.Throttle, new BotVariable(10F)),
+					TURN_TOWARDS_A = new Instruction(InstructionType.TurnTo, new BotVariable(0)),
+					TURN_TOWARDS_B = new Instruction(InstructionType.TurnTo, new BotVariable(1)),
+					TURN_TOWARDS_C = new Instruction(InstructionType.TurnTo, new BotVariable(2)),
+					RETURN = new Instruction(InstructionType.Return);
 	
 }

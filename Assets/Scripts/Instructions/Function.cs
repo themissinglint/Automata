@@ -1,3 +1,4 @@
+using UnityEngine;
 using System.Collections.Generic;
 
 // A Function is a special subclass of Instruction that 
@@ -7,17 +8,12 @@ using System.Collections.Generic;
 public class Function : Instruction {
 	public List<Instruction> subInstructions;
 		
-	public Function(){
+	//Constructor.  
+	//That weird syntax overrides the default base class constructor call.
+	public Function() : base(InstructionType.Function){
 		subInstructions = new List<Instruction>();	
 	}
-	
-	// When a function is run, it pushes itself onto the
-	// bot's callstack.
-	public override float run(Core_Bot_Basic bot){
-		bot.processor.callStack.Push(new Frame(this));
-		return 0;
-	}
-		
+			
 	// how many code blocks are in this function?
 	public int length(){
 		return subInstructions.Count;	
@@ -33,4 +29,16 @@ public class Function : Instruction {
 		return len;
 	}
 	//*/		
+
+	public static Function 
+			DRIVE_TOWARDS_A = new Function(),
+			DRIVE_TOWARDS_B = new Function(),
+			DRIVE_TOWARDS_C = new Function();
+	
+	public static void init(){
+		DRIVE_TOWARDS_A.subInstructions.Add(Instruction.TURN_TOWARDS_A);
+		Debug.Log("DRIVE_TOWARDS_A.subInstructions[0].param.channel is " + DRIVE_TOWARDS_A.subInstructions[0].param.channel);
+		DRIVE_TOWARDS_A.subInstructions.Add(Instruction.FORWARD_30);
+		DRIVE_TOWARDS_A.subInstructions.Add(Instruction.RETURN);
+	}
 }

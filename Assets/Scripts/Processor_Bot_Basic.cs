@@ -73,7 +73,7 @@ public class Processor_Bot_Basic{
 			case InstructionType.Break:
 				fParam = FloatFromBotVariable(curInstruction.param);
 				if(fParam != Mathf.NegativeInfinity){
-					bot.SetBreak(fParam);
+					bot.SetBreaks(fParam);
 					return 1F;
 				}
 			break;
@@ -112,6 +112,7 @@ public class Processor_Bot_Basic{
 				Debug.LogError ("Unexpected instruction type!");
 			break;
 		}
+		return 0f;
     }
 	
 	// If a param is a location, return that.  If the param is a channel
@@ -126,7 +127,8 @@ public class Processor_Bot_Basic{
 				Debug.Log("bot referenced a channel of the wrong type!");
 				// should stall or explode or something.
 			}
-		return null;
+		//This can't be null because apparently Vector3's are structs, not pointers to structs.
+		return Vector3.zero;
 	}
 	
 	
