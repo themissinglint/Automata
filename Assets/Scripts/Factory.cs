@@ -24,8 +24,8 @@ public class Factory : MonoBehaviour {
 			Vector3 pos = transform.position + transform.forward * Mathf.Cos(angle) * 6 + transform.up * Mathf.Sin(angle) * 6;
 			
 			if(bots.Count < maxRobots){
-				Instantiate(instance, pos, Quaternion.Euler(transform.position));
-				newBot = (instance).GetComponent<Core_Bot_Basic>();
+				newBot = Instantiate(instance, pos, Quaternion.Euler(transform.position)) as Core_Bot_Basic;
+				//newBot = (instance).GetComponent<Core_Bot_Basic>();
 				bots.Add(newBot);
 			} else {
 				// recycle the oldest bot.

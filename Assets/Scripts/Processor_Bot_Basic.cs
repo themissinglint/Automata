@@ -9,7 +9,7 @@ public class Processor_Bot_Basic{
     private float timeToNextStep;	// how much time before Step() is run again.
 	private Core_Bot_Basic bot;		// reference to the physical bot this is the processor of.
 	
-	public BotVariable[] channels = new BotVariable[3]; // channels hold bot's variables and may be set by incoming signals.
+	public BotVariable[] channels; // channels hold bot's variables and may be set by incoming signals.
     public Stack<Frame> callStack;		// the stack of functions this processor is running.
 
     // Use this for initialization
@@ -18,6 +18,10 @@ public class Processor_Bot_Basic{
         main_function = root;
         timeToNextStep = 0;
 		bot = owner;
+		channels = new BotVariable[3];
+		for (int i = 0; i < channels.Length; i++){
+			channels[0] = new BotVariable();	
+		}
     }
 
     // Update is called once per frame

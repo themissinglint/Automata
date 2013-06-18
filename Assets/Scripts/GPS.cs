@@ -80,7 +80,7 @@ class GPS{
 	// returns a raycastHit from the given point on the screen.
 	public static RaycastHit getRaycastHitFromScreenPos(Vector3 screenPos){
 		RaycastHit hit;
-		Physics.Raycast(Camera.main.ViewportPointToRay(screenPos), out hit);
+		Physics.Raycast(Camera.main.ScreenPointToRay(screenPos), out hit);
 		return hit;
 	}
 	

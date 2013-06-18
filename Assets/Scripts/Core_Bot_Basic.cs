@@ -25,7 +25,8 @@ public class Core_Bot_Basic : MonoBehaviour {
 	
 	void Start(){
 		main_function = Function.DRIVE_TOWARDS_A;
-		processor = new Processor_Bot_Basic(this, main_function);	
+		this.processor = new Processor_Bot_Basic(this, main_function);
+		Debug.Log("new bot with processor " + processor + " and channels " + processor.channels);
 	}
 	
 	void Update(){

@@ -19,7 +19,7 @@ public class Control_Tower : MonoBehaviour {
 			if (Input.GetMouseButtonDown(0)){
 				
 				//get the point clicked:
-				RaycastHit hit = GPS.getRaycastHitFromScreenPos(Camera.main.ScreenToViewportPoint(Input.mousePosition));
+				RaycastHit hit = GPS.getRaycastHitFromScreenPos(Input.mousePosition);
 				Vector3 location = hit.point;
 				
 				//build the message:
@@ -41,13 +41,16 @@ public class Control_Tower : MonoBehaviour {
 		Debug.Log ("Control Tower sending signal.");
 		
 		// get the list of bots from Factory:
-		List<Core_Bot_Basic> bots = Factory.bots;
-		
+		Core_Bot_Basic[] bots = FindObjectsOfType(typeof(Core_Bot_Basic)) as Core_Bot_Basic[];
+		Debug.Log ("bots: " + bots);
 		//for each bot, if it's in range:
-		for(int i = 0; i < bots.Count; i++){
+		for(int i = 0; i < bots.Length; i++){
 			Core_Bot_Basic bot = bots[i];
 			if ( Vector3.Distance(origin, bot.transform.position) < strength){
 				// set the data to the selected channel:
+				if( bot.processor == null){
+					Debug.Log("this bot has a null processor! " + bot);	
+				}
 				bot.processor.channels[channel] = data;	
 				Debug.Log ("signal recieved by bot");
 			}
